@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import navbarIcon from '/navbars.svg';
+import NavbarMenu from './NavbarMenu';
 export default function Header() {
   const [isVisible, setIsVisible] = useState(false);
   return (
@@ -23,9 +24,15 @@ export default function Header() {
             <p className="font-light">For kommuneansatte</p>
           </Link>
         </nav>
-        <button className="md:hidden rounded-full hover:bg-lime-100">
+        <button
+          onMouseUp={() => {
+            setIsVisible(true);
+          }}
+          className="md:hidden rounded-full hover:bg-lime-100"
+        >
           <img src={navbarIcon} className="m-3" />
         </button>
+        <NavbarMenu isVisible={isVisible} setIsVisible={setIsVisible} />
       </div>
     </div>
   );
