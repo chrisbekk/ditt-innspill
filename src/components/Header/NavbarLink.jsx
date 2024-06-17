@@ -7,10 +7,12 @@ export default function NavbarLink({ path, linkTo, setIsVisible, children }) {
     navigate(path);
   };
   return (
-    <motion.div className="flex items-center gap-2 p-3 border-b group hover:bg-neutral-100 transition-colors">
+    <motion.div className="flex items-center gap-2  border-b group hover:bg-neutral-100 transition-colors">
       {children}
-      <button onClick={handleClick}>
-        <p className="text-xl group-hover:text-custom_green">{linkTo}</p>
+      <button onClick={handleClick} className="p-3 w-full">
+        <p className="text-xl text-start group-hover:text-custom_green">
+          {linkTo}
+        </p>
       </button>
     </motion.div>
   );

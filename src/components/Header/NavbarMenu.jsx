@@ -1,6 +1,5 @@
-import { AnimatePresence, delay, motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import { createPortal } from 'react-dom';
-import { Link } from 'react-router-dom';
 import { MdHome } from 'react-icons/md';
 import { FaRegQuestionCircle } from 'react-icons/fa';
 import { CiMap } from 'react-icons/ci';
@@ -40,6 +39,7 @@ export default function NavbarMenu({ isVisible, setIsVisible }) {
       window.removeEventListener('resize', handleResize);
     };
   }, [isVisible]);
+
   return createPortal(
     <AnimatePresence>
       {isVisible && (
