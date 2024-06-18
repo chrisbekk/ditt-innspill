@@ -5,7 +5,7 @@ import NavbarMenu from './NavbarMenu';
 export default function Header() {
   const [isVisible, setIsVisible] = useState(false);
   return (
-    <div className="h-16 border-b ">
+    <div className="h-16 border-b sticky top-0">
       <div className="max-w-[1440px] mx-auto h-full flex items-center px-2 justify-between md:justify-normal">
         <Link to={'/'}>
           <h1 className="text-3xl font-medium font-figTree tracking-wide">
