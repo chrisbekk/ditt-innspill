@@ -31,9 +31,7 @@ export default function InformationGrid() {
           className="h-full object-cover md:order-last"
         />
         <div className="bg-custom_orange py-10 md:py-20 px-10 h-full">
-          <h2 className="text-2xl mb-4">
-            DittInnspill er for deg som vil bli hørt!
-          </h2>
+          <h2 className="text-2xl mb-4">Jobber du i kommunen?</h2>
           <p className="hidden md:block md:mb-4">
             Ved å delta i disse prosjektene kan du bidra til å forme utviklingen
             av ditt eget lokalsamfunn. Dette gir deg mulighet til å uttrykke
