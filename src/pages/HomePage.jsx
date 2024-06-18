@@ -4,12 +4,12 @@ import InformationGrid from '../components/Home/InformationGrid';
 
 export default function HomePage() {
   return (
-    <div className="max-w-[960px] sm:px-10 lg:px-0 sm:mx-auto">
+    <div className="max-w-[960px] md:px-10 lg:px-0 md:mx-auto md:mt-10">
       <section>
         <Hero />
       </section>
       <section className="px-6">
-        <h2 className="text-2xl sm:text-3xl font-medium tracking-wide ">
+        <h2 className="text-2xl md:text-3xl font-medium tracking-wide ">
           DittInnspill gjør medvirkning til hva det burde være. Det er du som
           sier din mening om hvordan kommunen din skal utvikle seg.
         </h2>

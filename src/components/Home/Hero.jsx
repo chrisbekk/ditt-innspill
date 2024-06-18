@@ -8,11 +8,11 @@ export default function Hero() {
     navigate('/projects');
   };
   return (
-    <div className="sm:flex ">
-      <div className="w-full sm:h-[500px] sm:max-w-[468px] sm:order-last">
+    <div className="md:flex ">
+      <div className="w-full md:h-[500px] md:max-w-[468px] md:order-last">
         <img src="./heroImg.jpg" className="h-full w-full object-cover" />
       </div>
-      <div className="py-8 px-6 sm:px-0 sm:py-32">
+      <div className="py-8 px-6 md:px-0 md:py-32">
         <h1 className="text-3xl md:text-5xl font-medium tracking-wide">
           Din mening teller.
         </h1>
