@@ -10,7 +10,7 @@ export default function InformationGrid() {
     <>
       <div className="md:grid md:grid-cols-2 md:h-[450px] mb-10 md:mb-0">
         <img src="./HavneBy-BvzgVvnj.webp" className="h-full object-cover" />
-        <div className="bg-custom_purple py-6 sm:py-20 px-10 h-full">
+        <div className="bg-custom_purple py-10 md:py-20 px-10 h-full">
           <h2 className="text-2xl mb-4">
             DittInnspill er for deg som vil bli hørt!
           </h2>
@@ -30,7 +30,7 @@ export default function InformationGrid() {
           src="public/FolkJobber-C3itZ9pf.webp"
           className="h-full object-cover md:order-last"
         />
-        <div className="bg-custom_orange py-6 sm:py-20 px-10 h-full">
+        <div className="bg-custom_orange py-10 md:py-20 px-10 h-full">
           <h2 className="text-2xl mb-4">
             DittInnspill er for deg som vil bli hørt!
           </h2>
