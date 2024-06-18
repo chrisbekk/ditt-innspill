@@ -5,7 +5,7 @@ export default function Footer() {
     <>
       <div className="w-screen bg-custom_yellow">
         <div className="max-w-[1440px] mx-auto px-2 h-48">
-          <div className="p-2 sm:p-8 h-full flex justify-between">
+          <div className="p-4 sm:p-8 h-full flex justify-between">
             <div>
               <h2 className="text-2xl">DittInnspill.</h2>
               <Link to={'/projects'}>
