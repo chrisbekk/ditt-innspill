@@ -1,8 +1,15 @@
-import { Outlet } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import { useEffect, useState } from 'react';
+
 export default function Root() {
-  //TODO: conditionally render header and footer based on path
+  const { pathname } = useLocation();
+  const [showFooter, setShowFooter] = useState(true);
+
+  useEffect(() => {
+    setShowFooter(pathname !== '/projects');
+  }, [pathname]);
 
   return (
     <div className="flex flex-col min-h-screen text-custom_black bg-slate-50 font-figTree overflow-x-hidden">
@@ -12,9 +19,11 @@ export default function Root() {
       <main>
         <Outlet />
       </main>
-      <footer className="mt-auto">
-        <Footer />
-      </footer>
+      {showFooter && (
+        <footer className="mt-auto">
+          <Footer />
+        </footer>
+      )}
     </div>
   );
 }
