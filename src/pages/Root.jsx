@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 
 export default function Root() {
   const { pathname } = useLocation();
+
   const [showFooter, setShowFooter] = useState(true);
 
   useEffect(() => {
