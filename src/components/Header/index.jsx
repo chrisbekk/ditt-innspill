@@ -11,17 +11,19 @@ export default function Header() {
   useEffect(() => {
     if (pathname === '/projects') {
       setShowAltHeader(true);
-      document.getElementById('mainHeader').classList.add('hidden');
     } else {
       setShowAltHeader(false);
-      document.getElementById('mainHeader').classList.remove('hidden');
     }
   }, [pathname]);
   return (
     <div className={`${showAltHeader ? 'min-h-16' : 'h-16'} md:h-16 border-b`}>
       <div className="h-full">
         <div className="max-w-[1440px] mx-auto h-full flex items-center px-2 justify-between md:justify-normal relative">
-          <Link to={'/'} id="mainHeader" className="md:block">
+          <Link
+            to={'/'}
+            id="mainHeader"
+            className={`${showAltHeader ? 'hidden md:block' : ''}`}
+          >
             <h1 className="text-3xl font-medium font-figTree tracking-wide">
               DittInnspill
             </h1>
