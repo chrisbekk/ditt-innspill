@@ -1,7 +1,14 @@
-import { motion, AnimatePresence, delay } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useEffect } from 'react';
+import ProjectCard from './ProjectCard';
 
-export default function ProjectsMenu({ toggleMenu, setToggleMenu }) {
+export default function ProjectsMenu({
+  toggleMenu,
+  setToggleMenu,
+  data,
+  pending,
+  fetchError,
+}) {
   const menuVariants = {
     initial: { scaleY: 0, originY: 1 },
     show: {
@@ -36,7 +43,9 @@ export default function ProjectsMenu({ toggleMenu, setToggleMenu }) {
           exit="exit"
           className="bg-purple-400 absolute bottom-0 md:hidden h-full w-full"
         >
-          sss
+          <div className="px-2 py-1 bg-custom_yellow">
+            <ProjectCard data={data} />
+          </div>
         </motion.div>
       )}
     </AnimatePresence>

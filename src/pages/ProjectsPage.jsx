@@ -1,21 +1,25 @@
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { IoRemoveOutline } from 'react-icons/io5';
+
 import ProjectsMenu from '../components/Projects/ProjectsMenu';
 import Header from '../components/Header';
+import useFetchData from '../hooks/useFetchData';
+import InputField from '../components/generics/InputField';
+import DropDownMenu from '../components/Projects/DropDownMenu';
+import Tag from '../components/generics/Tag';
 export default function ProjectsPage() {
   const { pathname } = useLocation();
   const [toggleMenu, setToggleMenu] = useState(false);
-  useEffect(() => {
-    const fetchData = async () => {
-      const response = await fetch('./src/data/projects.json');
-      const data = await response.json();
-      console.log(data);
-    };
-    fetchData();
-  }, []);
+  const [activeKommune, setActiveKommune] = useState(null);
+  const { data, pending, fetchError } = useFetchData();
+  const [searchTerm, setSearchTerm] = useState('');
+
   const handleClick = () => {
     setToggleMenu(prev => !prev);
+  };
+  const handleChange = e => {
+    setSearchTerm(e.target.value);
   };
   useEffect(() => {
     if (pathname === '/projects') {
@@ -30,10 +34,51 @@ export default function ProjectsPage() {
     <div className="border border-black h-screen  grid grid-rows-[1fr_64px] md:block">
       <div className="h-full overflow-hidden relative">
         <Header />
-        <div className="md:grid md:grid-cols-[0.4fr_0.6fr] w-full h-full relative">
-          <div className="bg-green-400 order-last md:order-1 h-full">MAP</div>
-          <ProjectsMenu toggleMenu={toggleMenu} setToggleMenu={setToggleMenu} />
-          <div className="bg-orange-400 w-full h-full hidden md:block">ss</div>
+        <div className="md:grid md:grid-cols-[0.4fr_0.6fr] w-full h-full relative md:mt-4">
+          <div className="bg-green-400 order-last md:order-1 h-full w-full">
+            MAP
+          </div>
+          <ProjectsMenu
+            toggleMenu={toggleMenu}
+            setToggleMenu={setToggleMenu}
+            data={data}
+          />
+          <div className="w-full flex-wrap h-full hidden md:block ">
+            <div className="mx-2 lg:mx-8">
+              <h3 className="text-2xl">Finn prosjekter</h3>
+
+              <InputField
+                id={'searchTerm'}
+                label={'Søk'}
+                placeholder={'Søk'}
+                isRequired={false}
+                value={searchTerm}
+                handleChange={handleChange}
+              />
+              <DropDownMenu
+                activeKommune={activeKommune}
+                setActiveKommune={setActiveKommune}
+              />
+              <div className="w-[80%] mt-8 flex flex-wrap gap-1">
+                {searchTerm && (
+                  <Tag
+                    name={searchTerm}
+                    handleClick={() => setSearchTerm('')}
+                  />
+                )}
+                {activeKommune && (
+                  <Tag
+                    name={activeKommune?.name}
+                    handleClick={() => setActiveKommune(null)}
+                  />
+                )}
+              </div>
+              <div className="mt-10">
+                <p className="font-semibold">Sorter</p>
+              </div>
+              <div className="px-2 py-1 bg-custom_yellow">ss</div>
+            </div>
+          </div>
         </div>
       </div>
       <div className="bg-blue-400 h-full md:hidden">
