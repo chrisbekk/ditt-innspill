@@ -16,22 +16,20 @@ export default function HomePage() {
       </section>
       <section className="px-6 my-20">
         <div className=" md:grid  md:grid-cols-3 md:gap-8">
-          <DescriptionCard src={'./HandHoldingAppKart-qkU0s909.webp'}>
+          <DescriptionCard src={'/HandHoldingAppKart-qkU0s909.webp'}>
             <p>
               Finn prosjekter nær deg gjennom å søke i liste eller kart. Scroll
               deg nedover lista, eller klikk deg rundt i kartet.
             </p>
           </DescriptionCard>
-          <DescriptionCard
-            src={'public/HandHoldingAppSammendrag-BVSzSiH4.webp'}
-          >
+          <DescriptionCard src={'/HandHoldingAppSammendrag-BVSzSiH4.webp'}>
             <p>
               Få all informasjon du trenger for å dele din mening. Vi har samlet
               bilder, sammendrag, innspill, kart og dokumenter, slik at du kan
               finne informasjonen du trenger før du gir innspill.
             </p>
           </DescriptionCard>
-          <DescriptionCard src={'public/HandHoldingAppInnspill-CsSVzUox.webp'}>
+          <DescriptionCard src={'/HandHoldingAppInnspill-CsSVzUox.webp'}>
             <p>
               Din lokalkunnskap og dine ønsker kan ha virkning på
               sluttresultatet når prosjektet skal besluttes. Slik kan prosjektet
