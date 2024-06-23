@@ -10,7 +10,7 @@ export default function useFetchData() {
     setPending(true);
     const fetchData = async () => {
       try {
-        const response = await fetch('./src/data/projects.json');
+        const response = await fetch('/data/projects.json');
         if (!response.ok) {
           throw new Error('Failed to fetch projects');
         }
