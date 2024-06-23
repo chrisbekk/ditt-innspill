@@ -14,12 +14,12 @@ export default function ProjectsMenu({
     show: {
       scaleY: 1,
       originY: 1,
-      transition: { type: 'easeInOut', delay: 0.15 },
+      transition: { type: 'ease' },
     },
     exit: {
       scaleY: 0,
       originY: 1,
-      transition: { type: 'easeInOut', delay: 0.125 },
+      transition: { type: 'ease' },
     },
   };
   useEffect(() => {
@@ -41,10 +41,12 @@ export default function ProjectsMenu({
           initial="initial"
           animate="show"
           exit="exit"
-          className="bg-purple-400 absolute bottom-0 md:hidden h-full w-full"
+          className="absolute bottom-0 md:hidden h-full w-full pb-16"
         >
-          <div className="px-2 py-1 bg-custom_yellow">
-            <ProjectCard data={data} />
+          <div className="px-2 py-1 bg-custom_yellow h-full overflow-y-scroll">
+            {data?.projects.map(project => (
+              <ProjectCard key={project.title} data={project} />
+            ))}
           </div>
         </motion.div>
       )}

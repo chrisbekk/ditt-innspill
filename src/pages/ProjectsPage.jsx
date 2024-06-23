@@ -8,6 +8,7 @@ import useFetchData from '../hooks/useFetchData';
 import InputField from '../components/generics/InputField';
 import DropDownMenu from '../components/Projects/DropDownMenu';
 import Tag from '../components/generics/Tag';
+import ProjectCard from '../components/Projects/ProjectCard';
 export default function ProjectsPage() {
   const { pathname } = useLocation();
   const [toggleMenu, setToggleMenu] = useState(false);
@@ -34,7 +35,7 @@ export default function ProjectsPage() {
     <div className="border border-black h-screen  grid grid-rows-[1fr_64px] md:block">
       <div className="h-full overflow-hidden relative">
         <Header />
-        <div className="md:grid md:grid-cols-[0.4fr_0.6fr] w-full h-full relative md:mt-4">
+        <div className="md:flex w-full h-full relative md:mt-4 ">
           <div className="bg-green-400 order-last md:order-1 h-full w-full">
             MAP
           </div>
@@ -43,7 +44,7 @@ export default function ProjectsPage() {
             setToggleMenu={setToggleMenu}
             data={data}
           />
-          <div className="w-full flex-wrap h-full hidden md:block ">
+          <div className="w-full flex-wrap h-full hidden md:block md:min-w-[480px] md:max-w-[680px]">
             <div className="mx-2 lg:mx-8">
               <h3 className="text-2xl">Finn prosjekter</h3>
 
@@ -76,7 +77,11 @@ export default function ProjectsPage() {
               <div className="mt-10">
                 <p className="font-semibold">Sorter</p>
               </div>
-              <div className="px-2 py-1 bg-custom_yellow">ss</div>
+              <div className="px-2 py-1 bg-custom_yellow">
+                {data?.projects.map(project => (
+                  <ProjectCard key={project.title} data={project} />
+                ))}
+              </div>
             </div>
           </div>
         </div>
