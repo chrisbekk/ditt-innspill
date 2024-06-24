@@ -14,7 +14,7 @@ export default function Root() {
   }, [pathname]);
 
   return (
-    <div className="flex flex-col min-h-screen text-custom_black bg-slate-50 font-figTree overflow-x-hidden">
+    <div className="flex flex-col min-h-screen text-custom_black bg-slate-50 font-figTree overflow-clip">
       <header>{showHeader && <Header />}</header>
       <main>
         <Outlet />

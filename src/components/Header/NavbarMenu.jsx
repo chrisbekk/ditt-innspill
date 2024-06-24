@@ -74,7 +74,11 @@ export default function NavbarMenu({ isVisible, setIsVisible }) {
               >
                 <CiMap className="text-xl group-hover:text-custom_green" />
               </NavbarLink>
-              <NavbarLink path={'/'} linkTo={'Om'} setIsVisible={setIsVisible}>
+              <NavbarLink
+                path={'about'}
+                linkTo={'Om'}
+                setIsVisible={setIsVisible}
+              >
                 <FaRegQuestionCircle className="text-xl group-hover:text-custom_green" />
               </NavbarLink>
             </nav>
