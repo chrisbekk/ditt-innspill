@@ -11,7 +11,7 @@ import InputField from '../components/generics/InputField';
 import DropDownMenu from '../components/Projects/DropDownMenu';
 import Tag from '../components/generics/Tag';
 import ProjectCardSmall from '../components/Projects/ProjectCardSmall';
-import Map from '../components/Projects/Map';
+import MapComponent from '../components/Projects/MapComponent';
 export default function ProjectsPage() {
   const { pathname } = useLocation();
   const [toggleMenu, setToggleMenu] = useState(false);
@@ -44,7 +44,7 @@ export default function ProjectsPage() {
         <Header />
         <div className="md:flex w-full h-full relative md:mt-4 ">
           <div className="bg-green-400 order-last md:order-1 h-full w-full">
-            <Map />
+            <MapComponent data={data?.projects} />
           </div>
           <ProjectsMenu
             toggleMenu={toggleMenu}

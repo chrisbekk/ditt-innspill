@@ -12,6 +12,7 @@
         "planID": "1233_0123",
         "link": "https://www.arealplaner.no/e18be559-c966-4780-81ff-0fc6ecddd7cb/arealplaner/1920"
       },
+      "position": { "latitude": 58.915931, "longitude": 5.740212 },
       "images": [
         {
           "src": "/project1/img1.jpg",
@@ -39,6 +40,7 @@
         "planID": "1233_0125",
         "link": "https://www.arealplaner.no/e18be559-c966-4780-81ff-0fc6ecddd7cb/arealplaner/1917"
       },
+      "position": { "latitude": 58.936463, "longitude": 5.695128 },
       "images": [
         {
           "src": "/project2/img1.jpg",
@@ -70,6 +72,7 @@
         "planID": "1233_0132",
         "link": "https://www.arealplaner.no/e18be559-c966-4780-81ff-0fc6ecddd7cb/arealplaner/1844"
       },
+      "position": { "latitude": 58.947878, "longitude": 5.720983 },
       "images": [
         {
           "src": "/project3/img1.jpg",
