@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { IoRemoveOutline } from 'react-icons/io5';
+import { FaArrowDown } from 'react-icons/fa';
+import { FaArrowUp } from 'react-icons/fa';
 
 import ProjectsMenu from '../components/Projects/ProjectsMenu';
 import Header from '../components/Header';
@@ -8,13 +10,14 @@ import useFetchData from '../hooks/useFetchData';
 import InputField from '../components/generics/InputField';
 import DropDownMenu from '../components/Projects/DropDownMenu';
 import Tag from '../components/generics/Tag';
-import ProjectCard from '../components/Projects/ProjectCard';
+import ProjectCardSmall from '../components/Projects/ProjectCardSmall';
 export default function ProjectsPage() {
   const { pathname } = useLocation();
   const [toggleMenu, setToggleMenu] = useState(false);
   const [activeKommune, setActiveKommune] = useState(null);
   const { data, pending, fetchError } = useFetchData();
   const [searchTerm, setSearchTerm] = useState('');
+  const [sortProjects, setSortProjects] = useState(false);
 
   const handleClick = () => {
     setToggleMenu(prev => !prev);
@@ -22,6 +25,9 @@ export default function ProjectsPage() {
   const handleChange = e => {
     setSearchTerm(e.target.value);
   };
+
+  const handleSort = () => {};
+
   useEffect(() => {
     if (pathname === '/projects') {
       document.body.classList.add('overflow-hidden');
@@ -76,10 +82,21 @@ export default function ProjectsPage() {
               </div>
               <div className="mt-10">
                 <p className="font-semibold">Sorter</p>
+                <div className="flex gap-3">
+                  <button
+                    onClick={handleSort}
+                    className="flex bg-custom_green p-2 px-5 text-sm font-light text-white items-center gap-2 rounded-full"
+                  >
+                    {sortProjects ? <FaArrowDown /> : <FaArrowUp />}A-Å
+                  </button>
+                  <button className="border border-custom_black p-2 px-5 rounded-full text-sm font-light">
+                    Frist
+                  </button>
+                </div>
               </div>
               <div className="px-2 py-1 bg-custom_yellow">
                 {data?.projects.map(project => (
-                  <ProjectCard key={project.title} data={project} />
+                  <ProjectCardSmall key={project.title} data={project} />
                 ))}
               </div>
             </div>
