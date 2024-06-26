@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { act, useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { IoRemoveOutline } from 'react-icons/io5';
 import { FaArrowDown } from 'react-icons/fa';
@@ -11,6 +11,7 @@ import InputField from '../components/generics/InputField';
 import DropDownMenu from '../components/Projects/DropDownMenu';
 import Tag from '../components/generics/Tag';
 import ProjectCardSmall from '../components/Projects/ProjectCardSmall';
+import MapComponent from '../components/Projects/MapComponent';
 export default function ProjectsPage() {
   const { pathname } = useLocation();
   const [toggleMenu, setToggleMenu] = useState(false);
@@ -18,13 +19,37 @@ export default function ProjectsPage() {
   const { data, pending, fetchError } = useFetchData();
   const [searchTerm, setSearchTerm] = useState('');
   const [sortProjects, setSortProjects] = useState(false);
+  const [originalData, setOriginalData] = useState([]);
+  const [filteredData, setFilteredData] = useState([]);
+
+  useEffect(() => {
+    if (data && data?.projects) {
+      setOriginalData(data.projects);
+      setFilteredData(data.projects);
+    }
+  }, [data]);
 
   const handleClick = () => {
     setToggleMenu(prev => !prev);
   };
   const handleChange = e => {
-    setSearchTerm(e.target.value);
+    const value = e.target.value.toLowerCase();
+    setSearchTerm(value);
   };
+
+  useEffect(() => {
+    let result = originalData;
+    if (searchTerm) {
+      result = result.filter(project =>
+        project.title.toLowerCase().includes(searchTerm),
+      );
+    }
+    if (activeKommune) {
+      result = result.filter(project => project.kommune === activeKommune.name);
+    }
+    console.log(result);
+    setFilteredData(result);
+  }, [searchTerm, activeKommune, originalData]);
 
   const handleSort = () => {};
 
@@ -42,13 +67,13 @@ export default function ProjectsPage() {
       <div className="h-full overflow-hidden relative">
         <Header />
         <div className="md:flex w-full h-full relative md:mt-4 ">
-          <div className="bg-green-400 order-last md:order-1 h-full w-full">
-            MAP
+          <div className=" order-last md:order-1 h-full w-full">
+            <MapComponent data={filteredData} />
           </div>
           <ProjectsMenu
             toggleMenu={toggleMenu}
             setToggleMenu={setToggleMenu}
-            data={data}
+            data={filteredData}
           />
           <div className="w-full flex-wrap h-full hidden md:block md:min-w-[480px] md:max-w-[680px]">
             <div className="mx-2 lg:mx-8">
@@ -65,6 +90,8 @@ export default function ProjectsPage() {
               <DropDownMenu
                 activeKommune={activeKommune}
                 setActiveKommune={setActiveKommune}
+                filteredData={data?.projects}
+                setFilteredData={setFilteredData}
               />
               <div className="w-[80%] mt-8 flex flex-wrap gap-1">
                 {searchTerm && (
@@ -94,8 +121,8 @@ export default function ProjectsPage() {
                   </button>
                 </div>
               </div>
-              <div className="px-2 py-1 bg-custom_yellow">
-                {data?.projects.map(project => (
+              <div className="px-2 py-1 bg-slate-100">
+                {filteredData.map(project => (
                   <ProjectCardSmall key={project.title} data={project} />
                 ))}
               </div>
@@ -103,7 +130,7 @@ export default function ProjectsPage() {
           </div>
         </div>
       </div>
-      <div className="bg-blue-400 h-full md:hidden">
+      <div className="bg-slate-50 h-full md:hidden">
         <span className="w-full flex justify-center">
           <IoRemoveOutline className="font-bold text-3xl" />
         </span>

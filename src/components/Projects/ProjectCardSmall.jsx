@@ -9,7 +9,7 @@ export default function ProjectCard({ data }) {
   return (
     <div
       onClick={() => handleClick(data.id)}
-      className="w-full md:grid md:grid-cols-[0.5fr_1fr] md:gap-4 md:min-h-46 bg-neutral-50 md:mb-4 md:p-2 hover:cursor-pointer"
+      className="w-full md:grid md:grid-cols-[0.5fr_1fr] md:gap-4 md:min-h-46 bg-neutral-50 md:mb-4 md:p-2 hover:cursor-pointer hover:bg-gray-200 hover:transition-colors"
     >
       <div className="md:h-full md:w-full">
         <img
