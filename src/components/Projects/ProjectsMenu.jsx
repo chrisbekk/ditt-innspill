@@ -44,7 +44,7 @@ export default function ProjectsMenu({
           className="absolute bottom-0 md:hidden h-full w-full pb-16"
         >
           <div className="px-2 py-1 bg-custom_yellow h-full overflow-y-scroll">
-            {data?.projects.map(project => (
+            {data.map(project => (
               <ProjectCard key={project.title} data={project} />
             ))}
           </div>

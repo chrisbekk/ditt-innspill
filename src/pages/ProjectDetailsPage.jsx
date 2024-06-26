@@ -52,7 +52,7 @@ export default function ProjectDetailsPage() {
       </div>
 
       <section className="my-10">
-        <ProjectSummary tabs={tabs} />
+        <ProjectSummary tabs={tabs} data={data} />
       </section>
       <div className="w-full flex justify-center mt-10 mb-24">
         <Button handleClick={handleNavigate}>Si din mening</Button>

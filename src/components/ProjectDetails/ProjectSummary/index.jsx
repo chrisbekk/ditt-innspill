@@ -1,15 +1,15 @@
 import Comments from './Comments';
 import Documents from './Documents';
-import Map from './Map';
+import ProjectMap from './ProjectMap';
 import Overview from './Overview';
-export default function ProjectSummary({ tabs }) {
+export default function ProjectSummary({ tabs, data }) {
   const tabContent = () => {
     const activeTab = tabs.find(tab => tab.isActive);
     switch (activeTab?.id) {
       case 1:
-        return <Overview />;
+        return <Overview data={data} />;
       case 2:
-        return <Map />;
+        return <ProjectMap data={data} />;
       case 3:
         return <Documents />;
       case 4:

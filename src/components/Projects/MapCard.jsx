@@ -1,12 +1,12 @@
 import { useNavigate } from 'react-router-dom';
-export default function MapCard({ data, id }) {
+export default function MapCard({ data, id, setSelectedMarkerId }) {
   const selectedProject = data?.find(project => project.id === id);
   const navigate = useNavigate();
   const handleClick = () => {
     navigate(`/details/${id}`);
   };
   return (
-    <div className="absolute bottom-24 right-[50%] translate-x-[50%] w-[450px] max-h-[165px] rounded-lg bg-white z-50 grid grid-cols-[0.7fr_1fr_0.1fr] gap-3 p-2">
+    <div className="absolute bottom-24 right-[50%] translate-x-[50%] w-[450px] max-h-[165px] rounded-lg bg-white z-50 grid grid-cols-[0.7fr_1fr_0.1fr] gap-3 p-2 ">
       <div className="">
         <img src={selectedProject?.images[0].src} className="rounded-xl" />
       </div>
@@ -26,7 +26,9 @@ export default function MapCard({ data, id }) {
         </button>
       </div>
       <div className="w-full">
-        <button className="mx-auto">X</button>
+        <button onClick={() => setSelectedMarkerId(null)} className="mx-auto">
+          X
+        </button>
       </div>
     </div>
   );

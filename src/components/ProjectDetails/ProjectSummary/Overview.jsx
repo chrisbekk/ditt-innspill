@@ -1,10 +1,10 @@
 import Documents from './Documents';
-import Map from './Map';
+import ProjectMap from './ProjectMap';
 
-export default function Overview() {
+export default function Overview({ data }) {
   return (
     <div className="w-full border border-black">
-      <Map />
+      <ProjectMap data={data} />
       <Documents />
     </div>
   );

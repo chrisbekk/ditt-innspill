@@ -7,7 +7,7 @@ export default function ProjectCard({ data }) {
   };
 
   return (
-    <div className="w-full md:grid md:grid-cols-[0.5fr_1fr] md:gap-4 md:min-h-46 bg-neutral-50 md:mb-4 md:p-2">
+    <div className="w-full md:grid md:grid-cols-[0.5fr_1fr] md:gap-4 md:min-h-46 bg-neutral-50 md:mb-4 md:p-2 ">
       <div className="md:h-full md:w-full">
         <img
           src={data?.images[0].src}

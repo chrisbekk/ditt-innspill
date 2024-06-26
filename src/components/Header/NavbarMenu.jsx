@@ -75,7 +75,7 @@ export default function NavbarMenu({ isVisible, setIsVisible }) {
                 <CiMap className="text-xl group-hover:text-custom_green" />
               </NavbarLink>
               <NavbarLink
-                path={'about'}
+                path={'/about'}
                 linkTo={'Om'}
                 setIsVisible={setIsVisible}
               >
