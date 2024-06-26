@@ -33,7 +33,7 @@ export default function Header() {
             <Link to={'/projects'}>
               <p className="font-light">Finn prosjekter</p>
             </Link>
-            <Link to={'about'}>
+            <Link to={'/about'}>
               <p className="font-light">Om</p>
             </Link>
             <Link to={'/'}>

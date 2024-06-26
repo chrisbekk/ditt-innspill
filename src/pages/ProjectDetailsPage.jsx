@@ -45,7 +45,7 @@ export default function ProjectDetailsPage() {
 
           <Details details={data?.details} />
           <div className="w-full flex justify-center mt-10">
-            <Button handleClick={handleNavigate}>Si din mening</Button>
+            <Button>Si din mening</Button>
           </div>
         </section>
         <TabsHeader tabs={tabs} setTabs={setTabs} />
@@ -55,7 +55,7 @@ export default function ProjectDetailsPage() {
         <ProjectSummary tabs={tabs} data={data} />
       </section>
       <div className="w-full flex justify-center mt-10 mb-24">
-        <Button handleClick={handleNavigate}>Si din mening</Button>
+        <Button>Si din mening</Button>
       </div>
     </div>
   );

@@ -1,3 +1,7 @@
 export default function Comments() {
-  return <div>Comments</div>;
+  return (
+    <div>
+      <h2 className="text-3xl">Innspill</h2>
+    </div>
+  );
 }

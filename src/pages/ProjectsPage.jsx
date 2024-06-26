@@ -47,7 +47,6 @@ export default function ProjectsPage() {
     if (activeKommune) {
       result = result.filter(project => project.kommune === activeKommune.name);
     }
-    console.log(result);
     setFilteredData(result);
   }, [searchTerm, activeKommune, originalData]);
 

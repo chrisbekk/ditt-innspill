@@ -20,7 +20,7 @@ export default function InformationGrid() {
             dine synspunkter, bekrymringer og ønsker knyttet til utviklingen av
             kommunen.{' '}
           </p>
-          <Button handleClick={handleClick}>
+          <Button handleClick={() => navigate('/about')}>
             <p>Om DittInnspill</p>
           </Button>
         </div>

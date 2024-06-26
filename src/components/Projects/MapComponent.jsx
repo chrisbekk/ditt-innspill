@@ -45,35 +45,38 @@ export default function MapComponent({ data }) {
 
   return (
     <div className="w-full h-full">
-      <Map
-        mapboxAccessToken={import.meta.env.VITE_APP_TOKEN}
-        ref={mapRef}
-        initialViewState={{
-          longitude: viewport.longitude,
-          latitude: viewport.latitude,
-          zoom: viewport.zoom,
-        }}
-        maxZoom={20}
-        style={{ width: '100%', height: '100%', position: 'relative' }}
-        mapStyle="mapbox://styles/mapbox/streets-v9"
-      >
-        {data?.map(project => (
-          <CustomMarker
-            key={project.id}
-            id={project.id}
-            position={project.position}
-            handleClick={handleSelectMarker}
-            isSelected={selectedMarkerId === project.id}
-          />
-        ))}
-        {selectedMarkerId && (
-          <MapCard
-            data={data}
-            id={selectedMarkerId}
-            setSelectedMarkerId={setSelectedMarkerId}
-          />
-        )}
-      </Map>
+      <div className="w-fulll h-full">
+        {' '}
+        <Map
+          mapboxAccessToken={import.meta.env.VITE_APP_TOKEN}
+          ref={mapRef}
+          initialViewState={{
+            longitude: viewport.longitude,
+            latitude: viewport.latitude,
+            zoom: viewport.zoom,
+          }}
+          maxZoom={20}
+          style={{ width: '100%', height: '100%', position: 'relative' }}
+          mapStyle="mapbox://styles/mapbox/streets-v9"
+        >
+          {data?.map(project => (
+            <CustomMarker
+              key={project.id}
+              id={project.id}
+              position={project.position}
+              handleClick={handleSelectMarker}
+              isSelected={selectedMarkerId === project.id}
+            />
+          ))}
+          {selectedMarkerId && (
+            <MapCard
+              data={data}
+              id={selectedMarkerId}
+              setSelectedMarkerId={setSelectedMarkerId}
+            />
+          )}
+        </Map>
+      </div>
     </div>
   );
 }
