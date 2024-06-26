@@ -1,5 +1,4 @@
 export default function Details({ details }) {
-  console.log(details);
   return (
     <div className="w-full p-10 bg-custom_yellow">
       <h2 className="text-2xl md:text-3xl font-medium">Detaljer om plan</h2>
@@ -22,7 +21,9 @@ export default function Details({ details }) {
         </div>
         <div className="mb-6 md:grid md:grid-cols-[0.4fr_1fr]">
           <p>Lenke til plan</p>
-          <a href={details?.link}>Se i arealplaner.no</a>
+          <a href={details?.link} className="flex gap-1 items-center">
+            Se i arealplaner.no <img src="/linkIcon.svg" className="size-5" />
+          </a>
         </div>
       </div>
     </div>
