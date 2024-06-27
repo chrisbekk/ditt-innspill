@@ -62,7 +62,7 @@ export default function ProjectsPage() {
   }, [pathname]);
 
   return (
-    <div className="border border-black h-screen  grid grid-rows-[1fr_64px] md:block">
+    <div className="border border-black h-screen grid grid-rows-[1fr_64px] md:block">
       <div className="h-full overflow-hidden relative">
         <Header />
         <div className="md:flex w-full h-full relative md:mt-4 ">
@@ -74,8 +74,8 @@ export default function ProjectsPage() {
             setToggleMenu={setToggleMenu}
             data={filteredData}
           />
-          <div className="w-full flex-wrap h-full hidden md:block md:min-w-[480px] md:max-w-[680px]">
-            <div className="mx-2 lg:mx-8">
+          <div className="w-full flex-wrap h-full md:overflow-y-scroll  hidden md:block md:min-w-[480px] md:max-w-[680px]">
+            <div className="mx-2 lg:mx-8 h-full">
               <h3 className="text-2xl">Finn prosjekter</h3>
 
               <InputField
@@ -120,7 +120,7 @@ export default function ProjectsPage() {
                   </button>
                 </div>
               </div>
-              <div className="px-2 py-1 bg-slate-100">
+              <div className="px-2 py-1 h-full bg-slate-100">
                 {filteredData.map(project => (
                   <ProjectCardSmall key={project.title} data={project} />
                 ))}
