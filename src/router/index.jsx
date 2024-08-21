@@ -6,6 +6,7 @@ import HomePage from '../pages/HomePage';
 import ProjectsPage from '../pages/ProjectsPage';
 import ProjectDetailsPage from '../pages/ProjectDetailsPage';
 import About from '../pages/About';
+import Projects from '../pages/Projects';
 
 //
 export const router = createBrowserRouter([

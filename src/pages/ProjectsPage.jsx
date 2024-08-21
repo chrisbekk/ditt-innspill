@@ -1,8 +1,7 @@
-import { act, useEffect, useState } from 'react';
+import { useState, useMemo } from 'react';
 import { useLocation } from 'react-router-dom';
 import { IoRemoveOutline } from 'react-icons/io5';
-import { FaArrowDown } from 'react-icons/fa';
-import { FaArrowUp } from 'react-icons/fa';
+import { FaArrowDown, FaArrowUp } from 'react-icons/fa';
 
 import ProjectsMenu from '../components/Projects/ProjectsMenu';
 import Header from '../components/Header';
@@ -12,76 +11,85 @@ import DropDownMenu from '../components/Projects/DropDownMenu';
 import Tag from '../components/generics/Tag';
 import ProjectCardSmall from '../components/Projects/ProjectCardSmall';
 import MapComponent from '../components/Projects/MapComponent';
+
+import { sortData } from '../utils/sortData';
+import { filterData } from '../utils/filterData';
+
 export default function ProjectsPage() {
   const { pathname } = useLocation();
   const [toggleMenu, setToggleMenu] = useState(false);
   const [activeKommune, setActiveKommune] = useState(null);
   const { data, pending, fetchError } = useFetchData();
   const [searchTerm, setSearchTerm] = useState('');
-  const [sortProjects, setSortProjects] = useState(false);
-  const [originalData, setOriginalData] = useState([]);
-  const [filteredData, setFilteredData] = useState([]);
-
-  useEffect(() => {
-    if (data && data?.projects) {
-      setOriginalData(data.projects);
-      setFilteredData(data.projects);
-    }
-  }, [data]);
+  const [sortProjects, setSortProjects] = useState('INITIAL');
 
   const handleClick = () => {
     setToggleMenu(prev => !prev);
   };
+
   const handleChange = e => {
-    const value = e.target.value.toLowerCase();
-    setSearchTerm(value);
+    setSearchTerm(e.target.value.toLowerCase());
   };
 
-  useEffect(() => {
-    let result = originalData;
-    if (searchTerm) {
-      result = result.filter(project =>
-        project.title.toLowerCase().includes(searchTerm),
-      );
-    }
-    if (activeKommune) {
-      result = result.filter(project => project.kommune === activeKommune.name);
-    }
-    setFilteredData(result);
-  }, [searchTerm, activeKommune, originalData]);
+  const handleSortData = () => {
+    setSortProjects(prev => {
+      if (prev === 'ASCENDING') {
+        return 'DESCENDING';
+      } else if (prev === 'DESCENDING') {
+        return 'ASCENDING';
+      } else {
+        return 'ASCENDING';
+      }
+    });
+  };
 
-  const handleSort = () => {};
+  const handleToggleDeadline = () => {
+    setSortProjects(prev => {
+      if (prev === 'DEADLINE') {
+        return 'ASCENDING';
+      } else {
+        return 'DEADLINE';
+      }
+    });
+  };
 
-  useEffect(() => {
-    if (pathname === '/projects') {
-      document.body.classList.add('overflow-hidden');
-    }
-    return () => {
-      document.body.classList.remove('overflow-hidden');
-    };
-  }, [pathname]);
+  const filteredData = useMemo(
+    () => filterData(data, searchTerm, activeKommune),
+    [data, searchTerm, activeKommune],
+  );
+
+  const sortedData = useMemo(
+    () => sortData(filteredData, sortProjects),
+    [data, sortProjects],
+  );
+
+  if (pathname === '/projects') {
+    document.body.classList.add('overflow-hidden');
+  } else {
+    document.body.classList.remove('overflow-hidden');
+  }
 
   return (
     <div className="border border-black h-screen grid grid-rows-[1fr_64px] md:block">
       <div className="h-full overflow-hidden relative">
         <Header />
-        <div className="md:flex w-full h-full relative md:mt-4 ">
-          <div className=" order-last md:order-1 h-full w-full">
-            <MapComponent data={filteredData} />
+        <div className="md:flex w-full h-full relative md:mt-4">
+          <div className="order-last md:order-1 h-full w-full">
+            <MapComponent data={sortedData} />
           </div>
           <ProjectsMenu
             toggleMenu={toggleMenu}
             setToggleMenu={setToggleMenu}
-            data={filteredData}
+            data={sortedData}
           />
-          <div className="w-full flex-wrap h-full md:overflow-y-scroll  hidden md:block md:min-w-[480px] md:max-w-[680px]">
+          <div className="w-full flex-wrap h-full md:overflow-y-scroll hidden md:block md:min-w-[480px] md:max-w-[680px]">
             <div className="mx-2 lg:mx-8 h-full">
               <h3 className="text-2xl">Finn prosjekter</h3>
 
               <InputField
-                id={'searchTerm'}
-                label={'Søk'}
-                placeholder={'Søk'}
+                id="searchTerm"
+                label="Søk"
+                placeholder="Søk"
                 isRequired={false}
                 value={searchTerm}
                 handleChange={handleChange}
@@ -89,8 +97,6 @@ export default function ProjectsPage() {
               <DropDownMenu
                 activeKommune={activeKommune}
                 setActiveKommune={setActiveKommune}
-                filteredData={data?.projects}
-                setFilteredData={setFilteredData}
               />
               <div className="w-[80%] mt-8 flex flex-wrap gap-1">
                 {searchTerm && (
@@ -110,18 +116,31 @@ export default function ProjectsPage() {
                 <p className="font-semibold">Sorter</p>
                 <div className="flex gap-3">
                   <button
-                    onClick={handleSort}
-                    className="flex bg-custom_green p-2 px-5 text-sm font-light text-white items-center gap-2 rounded-full"
+                    id="sort_asc_desc_button"
+                    onClick={handleSortData}
+                    className={`flex ${sortProjects === 'INITIAL' || sortProjects === 'DEADLINE' ? 'bg-white border border-custom_black text-neutral-950' : 'bg-custom_green'} min-w-24 p-2 px-5 text-sm font-light text-white items-center gap-2 rounded-full`}
                   >
-                    {sortProjects ? <FaArrowDown /> : <FaArrowUp />}A-Å
+                    {sortProjects === 'INITIAL' ||
+                    sortProjects === 'DEADLINE' ? (
+                      ''
+                    ) : sortProjects === 'ASCENDING' ? (
+                      <FaArrowDown />
+                    ) : (
+                      <FaArrowUp />
+                    )}
+                    <p className="ml-auto">A-Å</p>
                   </button>
-                  <button className="border border-custom_black p-2 px-5 rounded-full text-sm font-light">
+                  <button
+                    id="sort_deadline_button"
+                    onClick={handleToggleDeadline}
+                    className={`${sortProjects === 'DEADLINE' ? 'bg-custom_green text-white border-none' : 'bg-white'} border border-custom_black p-2 px-5 rounded-full text-sm font-light`}
+                  >
                     Frist
                   </button>
                 </div>
               </div>
               <div className="px-2 py-1 h-full bg-slate-100">
-                {filteredData.map(project => (
+                {sortedData.map(project => (
                   <ProjectCardSmall key={project.title} data={project} />
                 ))}
               </div>
@@ -133,18 +152,15 @@ export default function ProjectsPage() {
         <span className="w-full flex justify-center">
           <IoRemoveOutline className="font-bold text-3xl" />
         </span>
-        <button
-          onClick={() => setToggleMenu(prev => !prev)}
-          className="w-full px-2"
-        >
+        <button onClick={handleClick} className="w-full px-2">
           {toggleMenu ? (
             <span className="flex gap-3">
-              <img src="./mapIcon.svg" />
+              <img src="./mapIcon.svg" alt="Map icon" />
               <p className="text-custom_green">Vis kart</p>
             </span>
           ) : (
             <span className="flex gap-3">
-              <img src="./liste.svg" />
+              <img src="./liste.svg" alt="List icon" />
               <p className="text-custom_green">Vis liste</p>
             </span>
           )}

@@ -11,6 +11,8 @@ export default function Root() {
   useEffect(() => {
     setShowHeader(pathname !== '/projects');
     setShowFooter(pathname !== '/projects');
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }, [pathname]);
 
   return (
