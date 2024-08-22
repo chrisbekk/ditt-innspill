@@ -53,15 +53,9 @@ export default function ProjectsPage() {
     });
   };
 
-  const filteredData = useMemo(
-    () => filterData(data, searchTerm, activeKommune),
-    [data, searchTerm, activeKommune],
-  );
+  const filteredData = filterData(data, searchTerm, activeKommune);
 
-  const sortedData = useMemo(
-    () => sortData(filteredData, sortProjects),
-    [data, sortProjects],
-  );
+  const sortedData = sortData(filteredData, sortProjects);
 
   useEffect(() => {
     if (pathname === '/projects') {

@@ -51,7 +51,7 @@ export default function Header() {
           <NavbarMenu isVisible={isVisible} setIsVisible={setIsVisible} />
           {showAltHeader && <AltHeader setToggleFilter={setToggleFilter} />}
         </div>
-        {showAltHeader && toggleFilter && <p className="md:hidden">sss</p>}
+        {showAltHeader && toggleFilter && <p className="md:hidden"></p>}
       </div>
     </div>
   );
