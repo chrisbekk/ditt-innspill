@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { FaChevronLeft } from 'react-icons/fa';
 import { FaChevronRight } from 'react-icons/fa';
@@ -27,6 +27,16 @@ export default function ImageCarousel({ images }) {
       setFullscreen(false);
     }
   };
+
+  useEffect(() => {
+    if (fullscreen) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      document.body.classList.add('overflow-hidden');
+    }
+    return () => {
+      document.body.classList.remove('overflow-hidden');
+    };
+  }, [fullscreen]);
 
   return (
     <div className="md:mx-auto w-full max-w-[730px] md:max-h-[540px] relative">

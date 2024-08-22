@@ -4,6 +4,7 @@ import Map from 'react-map-gl';
 import CustomMarker from './CustomMarker';
 import MapCard from './MapCard';
 import useSupercluster from 'use-supercluster';
+import { MAPBOX_APP_TOKEN } from '../../constants';
 
 export default function MapComponent({ data }) {
   const [selectedMarkerId, setSelectedMarkerId] = useState(null);
@@ -48,7 +49,7 @@ export default function MapComponent({ data }) {
       <div className="w-fulll h-full">
         {' '}
         <Map
-          mapboxAccessToken={import.meta.env.VITE_APP_TOKEN}
+          mapboxAccessToken={MAPBOX_APP_TOKEN}
           ref={mapRef}
           initialViewState={{
             longitude: viewport.longitude,

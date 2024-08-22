@@ -1,6 +1,6 @@
 export default function AltHeader({ setToggleFilter }) {
   return (
-    <div className="w-full h-16 md:hidden flex">
+    <div className="w-full h-16 flex md:hidden">
       <div className=" h-full w-full relative">
         <label htmlFor="search" className="block" aria-hidden>
           Søk
