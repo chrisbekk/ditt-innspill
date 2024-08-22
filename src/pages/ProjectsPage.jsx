@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { IoRemoveOutline } from 'react-icons/io5';
 import { FaArrowDown, FaArrowUp } from 'react-icons/fa';
@@ -63,11 +63,15 @@ export default function ProjectsPage() {
     [data, sortProjects],
   );
 
-  if (pathname === '/projects') {
-    document.body.classList.add('overflow-hidden');
-  } else {
-    document.body.classList.remove('overflow-hidden');
-  }
+  useEffect(() => {
+    if (pathname === '/projects') {
+      document.body.classList.add('overflow-hidden');
+    }
+
+    return () => {
+      document.body.classList.remove('overflow-hidden');
+    };
+  }, [pathname]);
 
   return (
     <div className="border border-black h-screen grid grid-rows-[1fr_64px] md:block">
