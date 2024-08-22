@@ -122,7 +122,7 @@ export default function ProjectsPage() {
                   <button
                     id="sort_asc_desc_button"
                     onClick={handleSortData}
-                    className={`flex ${sortProjects === 'INITIAL' || sortProjects === 'DEADLINE' ? 'bg-white border border-custom_black text-neutral-950' : 'bg-custom_green'} min-w-24 p-2 px-5 text-sm font-light text-white items-center gap-2 rounded-full`}
+                    className={`flex ${sortProjects === 'INITIAL' || sortProjects === 'DEADLINE' ? 'bg-white border border-custom_black text-neutral-950' : 'bg-custom_green text-white'} min-w-24 p-2 px-5 text-sm font-light  items-center gap-2 rounded-full`}
                   >
                     {sortProjects === 'INITIAL' ||
                     sortProjects === 'DEADLINE' ? (
@@ -132,7 +132,7 @@ export default function ProjectsPage() {
                     ) : (
                       <FaArrowUp />
                     )}
-                    <p className="ml-auto">A-Å</p>
+                    <p className="ml-auto text-">A-Å</p>
                   </button>
                   <button
                     id="sort_deadline_button"
